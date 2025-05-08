@@ -74,10 +74,46 @@ select#months {
   border: 4px solid rgb(89, 241, 228);
   font-size: 1.2em;
   text-align: center;
+  /* Add this line */
+  min-height: 140px; /* Example value - you might need to adjust */
 }
 
 .congrats h3 {
   display: block;
+}
+
+/* Added styles for the result paragraph to handle newlines */
+.congrats p.result { /* Added .result class for specificity if needed */
+  white-space: pre-wrap; /* Preserves whitespace and newlines */
+}
+
+.savings-highlight {
+  color: #5cb85c; /* Example green color */
+  font-weight: bold;
+  animation-name: fadeInAndScale; /* Change the animation name */
+  animation-duration: 0.8s; /* Adjust duration */
+  animation-timing-function: ease-out;
+  display: inline-block; /* Needed for transform to work */
+  /* You can add other animation properties like delay, iteration-count, etc. */
+}
+
+@keyframes fadeInAndScale { /* New keyframes name */
+  0% {
+      opacity: 0; /* Start completely transparent */
+      transform: scale(0.9); /* Start slightly smaller */
+  }
+  50% {
+       transform: scale(1.1); /* Slightly larger than normal halfway */
+  }
+  100% {
+      opacity: 1; /* End completely opaque */
+      transform: scale(1); /* Return to normal size */
+  }
+}
+
+.congrats p.result .savings-highlight {
+  display: block;
+  margin-top: 0.5em;
 }
 
 footer {
@@ -108,4 +144,65 @@ footer a {
   .congrats h3 {
     font-size: 1.2em;
   }
+}
+
+/* Add these styles to your css/styles.css file */
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 759px) { /* Applies to screens up to 759px wide */
+
+  body {
+      padding: 2em 0; /* Slightly less vertical padding on body */
+      /* Consider removing height: 100vh if content is tall and gets cut off */
+      /* Or use min-height: 100vh if you want it to always be at least viewport height */
+      height: auto; /* Let body height be determined by content */
+      min-height: 100vh; /* Ensure it fills the screen if content is short */
+  }
+
+  .container {
+      width: 95%; /* Slightly increase width to use more of the screen */
+      padding: 0.5em; /* Reduce padding inside the container */
+      max-height: none; /* Remove max-height constraint on small screens */
+      justify-content: flex-start; /* Align items to the top instead of center vertically */
+  }
+
+  h1 {
+      margin: 1em 0 1.5em; /* Slightly less bottom margin for the heading */
+      font-size: 1.8em; /* Optional: Adjust heading size if too large */
+  }
+
+  .selections {
+      flex-direction: column; /* Stack selection divs vertically */
+      align-items: center; /* Center the stacked divs */
+  }
+
+  .subscription-select,
+  .duration-select {
+      width: 95%; /* Make the select containers take up more width */
+      margin-bottom: 1em; /* Add some space between stacked selects */
+  }
+
+  .subscription-select > *,
+  .duration-select > * {
+      margin: 0.5em 0; /* Reduce vertical margin for elements inside selects */
+  }
+
+  select#subscription,
+  select#months {
+       padding: 0.5em; /* Slightly reduce padding in the select dropdowns */
+       font-size: 1em; /* Ensure font size is reasonable */
+  }
+
+  .congrats {
+      width: 95%; /* Make the congrats box take up more width */
+      padding: 1em 0.5em; /* Adjust padding */
+      margin: 1.5em 0; /* Adjust vertical margin */
+      font-size: 1.1em; /* Slightly reduce font size */
+  }
+
+   .congrats p.result .savings-highlight {
+      margin-top: 0.3em; /* Slightly reduce top margin for savings highlight */
+   }
+
+
 }
